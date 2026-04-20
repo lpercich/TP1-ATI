@@ -24,3 +24,11 @@ def sobel_edges(gray_image, ksize: int = 3, blur_ksize: int = 5, threshold_ratio
     )
 
     return magnitude_uint8, edge_mask
+
+
+def canny_edges(gray_image, low_threshold: int, high_threshold: int, blur_ksize: int = 5):
+    if blur_ksize > 0:
+        gray_image = cv2.GaussianBlur(gray_image, (blur_ksize, blur_ksize), 0)
+
+    edge_mask = cv2.Canny(gray_image, low_threshold, high_threshold)
+    return edge_mask
